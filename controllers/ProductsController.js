@@ -1,65 +1,36 @@
+const Product = require('../models/Product');
+
 
 exports.getProducts =   (req,res)=>{
 
-     let products = [
-        {
-            img:'htt',
-            name:'Phone', 
-            price:20000,
-            description:'my description'
-        },
-        {
-            img:'htt',
-            name:'Phone', 
-            price:20000,
-            description:'my description'
-        },
-        {
-            img:'htt',
-            name:'Phone', 
-            price:20000,
-            description:'my description'
-        },
-        {
-            img:'htt',
-            name:'Phone', 
-            price:20000,
-            description:'my description'
-        },
-        {
-            img:'htt',
-            name:'Phone', 
-            price:20000,
-            description:'my description'
-        },
-        {
-            img:'htt',
-            name:'Phone', 
-            price:20000,
-            description:'my description'
-        },
-        {
-            img:'htt',
-            name:'Phone', 
-            price:20000,
-            description:'my description'
-        },
-
-     ]
-
-
-    res.send(products);
+     Product.find().then(products =>{
+         return res.status(200).send(products)
+     }).catch(error =>{
+         return res.status(400).send(error)
+     })
 };
 
 exports.getProductById = (req, res) =>{
-
-    res.status(200).send('Get product by id here');
-
+ 
+    Product.findById(req.params.id)
+     .then( product=>{
+        return res.status(200).send(product);
+     }).catch(error =>{
+         return res.status(400).send(error);
+     })
 };
 
 exports.createProduct = (req,res)=>{
+ 
 
-    res.status(200).send('Create product here');
+        Product.create(req.body).then((product)=>{
+            return res.status(200).send({
+                message:'Product created successfully',
+                product});
+        }).catch(error =>{
+            return res.status(400).send(error);
+        }) 
+    
 };
 
 exports.updateProduct = (req,res)=>{
