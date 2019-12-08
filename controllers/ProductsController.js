@@ -49,7 +49,7 @@ exports.updateProduct = (req,res)=>{
 
 exports.deleteProduct = (req,res)=>{
 
-    Product.remove({_id:req.params.id})
+    Product.deleteOne({_id:req.params.id})
     .then(()=>{
         res.status(200).send('Product deleted Successfully');
     }).catch(error =>{
