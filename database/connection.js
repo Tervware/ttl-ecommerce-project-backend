@@ -3,7 +3,8 @@
 
 mongoose.connect('mongodb://localhost:27017/ttl_ecommerce', {
      useNewUrlParser: true,
-     useUnifiedTopology: true
+     useUnifiedTopology: true,
+     useFindAndModify: false 
   });
 
   const db = mongoose.connection;
