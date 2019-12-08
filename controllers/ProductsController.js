@@ -13,6 +13,7 @@ exports.getProducts =   (req,res)=>{
 exports.getProductById = (req, res) =>{
  
     Product.findById(req.params.id)
+    .populate('category')
      .then( product=>{
         return res.status(200).send(product);
      }).catch(error =>{
@@ -35,12 +36,26 @@ exports.createProduct = (req,res)=>{
 
 exports.updateProduct = (req,res)=>{
 
-    res.status(200).send('This API endpoint updates a product');
-};
+    Product.findByIdAndUpdate(req.body.id, req.body)
+    .then( ()=>{
+       return Product.findById(req.body.id)
+        .then( product =>{
+            return res.status(200).send(product);
+        })
+    }).catch( error =>{
+        return res.status(400).send(error)
+    })
+ };
 
 exports.deleteProduct = (req,res)=>{
-    res.status(200).send('This API endpoint deletes a product');
 
+    Product.remove({_id:req.params.id})
+    .then(()=>{
+        res.status(200).send('Product deleted Successfully');
+    }).catch(error =>{
+        return res.status(400).send(error);
+    })
+    
 };
 
 
