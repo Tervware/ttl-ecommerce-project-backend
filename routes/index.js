@@ -4,6 +4,8 @@ const ProductsController = require('../controllers/ProductsController');
 const CategoriesController = require('../controllers/CategoriesController');
 const router = express.Router();
 
+const Upload = require('../middleware/Upload')
+
 router.get('/', function(req,res){
     res.send("Home");
 });
@@ -11,7 +13,7 @@ router.get('/', function(req,res){
 // Products routes
 router.get('/products', ProductsController.getProducts);
 router.get('/products/:id', ProductsController.getProductById);
-router.post('/products', ProductsController.createProduct);
+router.post('/products',Upload, ProductsController.createProduct);
 router.patch('/products', ProductsController.updateProduct);
 router.delete('/products/:id', ProductsController.deleteProduct);
 

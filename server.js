@@ -8,4 +8,6 @@ const bodyParser = require('body-parser')
  
  app.use('/', routes);
 
+ app.use('/uploads', express.static('uploads'));
+
  app.listen(3000, ()=> console.log('Server Started at Port 3000'));
