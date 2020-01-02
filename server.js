@@ -10,4 +10,7 @@ const bodyParser = require('body-parser')
 
  app.use('/uploads', express.static('uploads'));
 
+ app.use((err, req, res, next)=>{
+     return res.status(500).send({message:err.message})
+ })
  app.listen(3000, ()=> console.log('Server Started at Port 3000'));

@@ -4,7 +4,8 @@
 mongoose.connect('mongodb://localhost:27017/ttl_ecommerce', {
      useNewUrlParser: true,
      useUnifiedTopology: true,
-     useFindAndModify: false 
+     useFindAndModify: false ,
+     useCreateIndex:true
   });
 
   const db = mongoose.connection;
