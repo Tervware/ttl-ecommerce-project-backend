@@ -3,6 +3,7 @@ const express = require('express');
 const ProductsController = require('../controllers/ProductsController');
 const CategoriesController = require('../controllers/CategoriesController');
 const UserController = require('../controllers/UserController');
+const OrdersController = require('../controllers/OrdersController');
 const router = express.Router();
 
 const Upload = require('../middleware/Upload')
@@ -23,9 +24,14 @@ router.delete('/products/:id', ProductsController.deleteProduct);
 router.post('/categories', CategoriesController.createCategory);
 router.get('/categories', CategoriesController.getCategories);
 
-//Categories routes
+//Auth routes
 router.post('/users', UserController.signup); 
 router.post('/login', UserController.login); 
+
+//Order routes
+router.post('/orders', OrdersController.createOrder); 
+router.get('/orders', OrdersController.getOrders);  
+router.patch('/orders/status', OrdersController.updateOrderStatus);  
 
 
 module.exports = router;
