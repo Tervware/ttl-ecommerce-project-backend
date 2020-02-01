@@ -45,7 +45,7 @@ exports.login = (req, res)=>{
 
          let token = jwt.sign({
              userId:user._id,
-             email:user.emal,
+             email:user.email,
          },
          'MyScreteKey',
          {
