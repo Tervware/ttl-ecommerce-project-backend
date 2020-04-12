@@ -1,5 +1,6 @@
 # Techgen Talent Lab 2019 Simple Eccomerce App Project (Backend)
-Source code for the TTL19  Node js backend project
+Source code for the TTL19  Node js backend project.
+This Module provides the API endpoints needed for frontend.
 
 ## Installation
 - Clone, Fork or download this repo
