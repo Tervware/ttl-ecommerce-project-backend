@@ -22,7 +22,14 @@ exports.getProductById = (req, res) =>{
 };
 
 exports.createProduct = (req,res)=>{
+
+    req.body.images = []; 
+    
+    req.files.map( file =>{
+        req.body.images.push(file.path);
+    })
  
+    req.body.specification = JSON.parse(req.body.specification);
 
         Product.create(req.body).then((product)=>{
             return res.status(200).send({
